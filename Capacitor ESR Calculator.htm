@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html data-lt-installed="true"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>Capacitor ESR Calculator</title>
+	<style type="text/css">
+	body {margin: 30px;}
+	input:disabled{
+		border:solid 1px #882222;
+		background-color:#DEFFD2;
+		color:#222222;
+	}
+	input{
+		background-color:#FFFED2;
+		font-size: 18px;
+		width: 90px;
+	}
+	</style> 
+	</head>
+
+
+	<body text="gold" bgcolor="#8A9A8A">
+	<h1><b> Capacitor ESR Calculator</b></h1>
+	<div>
+	  <p> Default values are filled according to <a href="https://www.digikey.com/product-detail/en/rubycon/450LXW47MEFR10X40/1189-4257-ND/9556728">Rubycon 450LXW47MEFR10X40</a></p>
+	</div>
+
+	<div style="margin:0 +32px">
+	<form name="calculator">
+	  <table>
+		<tbody><tr>
+		  <td align="right">Cap Value</td>
+		  <td align="left"><input id="capval" type="number" value="47" placeholder="Capacitor Value (e.g. 47)" oninput="capcalc(this.id,this.value)" onchange="capcalc(this.id,this.value)"></td>
+		  <td align="left">µF</td>
+		</tr>
+		<tr>
+		  <td align="right">Frequency</td>
+		  <td align="left"><input id="freq" type="number" value="120" placeholder="Frequency (e.g. 120)" oninput="capcalc(this.id,this.value)" onchange="capcalc(this.id,this.value)"></td>
+		  <td align="left">Hz</td>
+		</tr>
+		<tr>
+		  <td align="right">tan (δ)</td>
+		  <td align="left"><input id="tandelta" type="number" value="0.2" placeholder="tan (δ) (e.g. 0.2)" oninput="capcalc(this.id,this.value)" onchange="capcalc(this.id,this.value)"></td>
+		  <td align="left"></td>
+		</tr>
+		<tr>
+		  <td align="right">Imax @ 120Hz</td>
+		  <td align="left"><input id="imax" type="number" value="0.46" placeholder="Imax (e.g. 1.02)" oninput="capcalc(this.id,this.value)" onchange="capcalc(this.id,this.value)"></td>
+		  <td align="left">A</td>
+		</tr>
+		<tr>
+		  <td align="right">ESR @ 120Hz</td>
+		  <td align="left"><input id="esr" type="text" disabled="disabled" value="5.644" placeholder="ESR (e.g. 10)" oninput="capcalc(this.id,this.value)" onchange="capcalc(this.id,this.value)"></td>
+		  <td align="left">Ω</td>
+		</tr>
+		<tr>
+		  <td align="right">Pmax</td>
+		  <td align="left"><input id="pmax" type="text" disabled="disabled" value="1.194" placeholder="Pmax (e.g. 1.03)" oninput="capcalc(this.id,this.value)" onchange="capcalc(this.id,this.value)"></td>
+		  <td align="left">W</td>
+		</tr>
+		<tr>
+		  <td align="right">Imax @ 100kHz</td>
+		  <td align="left"><input id="imaxk" type="number" value="1.012" placeholder="Imax (e.g. 1.02)" oninput="capcalc(this.id,this.value)" onchange="capcalc(this.id,this.value)"></td>
+		  <td align="left">A</td>
+		</tr>
+		<tr>
+		  <td align="right">ESR @ 100kHz</td>
+		  <td align="left"><input id="esrk" type="text" disabled="disabled" value="1.166" placeholder="ESR (e.g. 10)" oninput="capcalc(this.id,this.value)" onchange="capcalc(this.id,this.value)"></td>
+		  <td align="left">Ω</td>
+		</tr>
+		<tr>
+		  <td align="right"></td>
+		  <td align="left"><input type="reset" value="Reset"></td>
+		</tr>
+	  </tbody></table>
+
+	</form></div>
+
+	
+
+
+	<div>
+		<div>
+			Source:
+			<ol>
+				<li>
+				KEMET Electronics Corp., (2004). "Technical Update – Explanation of 
+Ripple Current Capabilities" [White paper]. Retrieved from
+				<a href="https://sh.kemet.com/Lists/TechnicalArticles/Attachments/161/2004%20Article%20-%20Ripple%20Current%20Confusion.pdf">here.</a>
+				</li>
+				<li>
+				Xie, Manjing,“How to select input capacitors for a buck converter,” AAJ 2Q 2016,Texas Instruments, 2016. Retrieved from
+				<a href="https://www.ti.com/lit/an/slyt670/slyt670.pdf">here.</a>
+				</li>
+				<li>
+				Arrigo, Jason, Input and Output Capacitor Selection, Application Report, TI Literature No. SLTA055, 2006. Retrieved from
+				<a href="https://www.ti.com/lit/an/slta055/slta055.pdf">here.</a>
+				</li>
+			</ol>
+		</div> 
+		
+	<div id="footer" class="row centered borderwrapper">sefaunal.com, 2023</div>
+	</div>
+	
+
+
+
+	<script>
+	function capcalc(source,valNum) {
+		valNum = parseFloat(valNum);
+		var tandelta = document.getElementById("tandelta");
+		var freq = document.getElementById("freq");
+		var capval = document.getElementById("capval");
+		var imax = document.getElementById("imax");
+		var esr = document.getElementById("esr");
+		var pmax = document.getElementById("pmax");
+		var imaxk = document.getElementById("imaxk");
+		var esrk = document.getElementById("esrk");
+
+		if (source!="capval") {
+			//capvalval=tandelta.value * 1 / (2 * Math.PI * freq.value * esr.value);
+			//capval.value=(capvalval * 1e6).toFixed(3);
+		}
+		if (source!="tandelta") {
+		}
+		if (source!="freq") {
+		}
+		if (source!="imax") {
+		}
+		if (source!="esr") {
+			esrval=tandelta.value * 1 / (2 * Math.PI * freq.value * capval.value * 1e-6);
+			esr.value=(esrval).toFixed(3);
+		}
+		if (source!="pmax") {
+			esrval=tandelta.value * 1 / (2 * Math.PI * freq.value * capval.value * 1e-6);
+			pmaxval=Math.pow(imax.value, 2) * esrval;
+			pmax.value=(pmaxval).toFixed(3);
+		}
+		if (source!="imaxk") {
+		}
+		if (source!="esrk") {
+			esrk.value=(pmax.value / Math.pow(imaxk.value, 2)).toFixed(3);
+		}
+	}
+	
+	(function start() {
+		var today = new Date()
+		var year = today.getFullYear()
+		document.getElementById("footer").innerHTML = 'sefaunal.com, ' + year
+	})();
+	</script>
+
+<script>
+</script>
+</body></html>
